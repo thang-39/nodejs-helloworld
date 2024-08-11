@@ -2,7 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const config = require("./mmodule/config");
 
-http.createServer((req, res) => {
+function onRequest(req, res) {
   fs.readFile('./home123.html', function(err, data) {
     if (err) {
       res.writeHead(404);
@@ -12,4 +12,6 @@ http.createServer((req, res) => {
     }
     res.end();
   });
-}).listen(config.port);
+}
+
+http.createServer(onRequest).listen(config.port);
